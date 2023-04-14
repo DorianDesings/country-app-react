@@ -9,7 +9,6 @@ const MainContainer = () => {
 	const [region, setRegion] = useState(0);
 	const [search, setSearch] = useState('');
 	const { setUrlToFetch, data, loading } = useFetch(COUNTRIES.ALL);
-	console.log('DATA', data);
 	return (
 		<>
 			<Search
