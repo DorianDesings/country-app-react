@@ -1,26 +1,23 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import { v4 } from 'uuid';
+import { useParams } from 'react-router-dom';
 import { useFetch } from '../../hooks/useFetch';
 import { searchCountryFullName } from '../../utils/format-countries';
+import { useEffect, useState } from 'react';
+import CountryDetails from '../../components/country-details/CountryDetails';
+import { COUNTRIES } from '../../constants/urls';
 
 const CountryDetailsByName = () => {
+	const [countryData, setCountryData] = useState([]);
 	const { name } = useParams();
-	const navigate = useNavigate();
-	const { data } = useFetch(searchCountryFullName(name));
+	console.log(name);
+	const { data, setUrlToFetch } = useFetch(searchCountryFullName(name));
 
-	console.log(data);
+	useEffect(() => {
+		setCountryData(data);
+		setUrlToFetch(`${COUNTRIES.NAME}${name}`);
+	}, [data]);
+
 	if (data.length === 0) return <h1>Loading ...</h1>;
-	return (
-		<>
-			<h1>{data[0].name.common}</h1>
-			{data[0].borders &&
-				data[0].borders.map(border => (
-					<p key={v4()} onClick={() => navigate(`/country/code/${border}`)}>
-						{border}
-					</p>
-				))}
-		</>
-	);
+	return <CountryDetails country={countryData[0]} />;
 };
 
 export default CountryDetailsByName;

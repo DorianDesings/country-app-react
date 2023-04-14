@@ -4,6 +4,7 @@ import { v4 } from 'uuid';
 const CountryDetails = ({ country }) => {
 	console.log(country);
 	const navigate = useNavigate();
+	if (!country) return <h1>Loading...</h1>;
 	return (
 		<>
 			<h1>{country.name.common}</h1>
