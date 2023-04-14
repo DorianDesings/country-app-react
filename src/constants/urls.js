@@ -1,6 +1,6 @@
 import { REGIONS } from './region-filter';
 
-const URL_BASE = 'https://restcountries.com/v3.1/';
+const URL_BASE = 'https://restcountries.com/v3.1';
 
 export const COUNTRIES = {
 	ALL: `${URL_BASE}/all`,
@@ -9,5 +9,6 @@ export const COUNTRIES = {
 	ASIA: `${URL_BASE}/region/${REGIONS.ASIA}`,
 	EUROPE: `${URL_BASE}/region/${REGIONS.EUROPE}`,
 	OCEANIA: `${URL_BASE}/region/${REGIONS.OCEANIA}`,
-	NAME: `${URL_BASE}name/`
+	NAME: `${URL_BASE}/name/`,
+	CODE: `${URL_BASE}/alpha?codes=`
 };
